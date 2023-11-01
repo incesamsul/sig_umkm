@@ -15,4 +15,9 @@ class Umkm extends Model
     {
         return $this->hasOne(LokasiUmkm::class, 'umkm_id',  'id');
     }
+
+    public function rating()
+    {
+        return $this->hasMany(Rate::class, 'umkm_id', 'id');
+    }
 }

@@ -330,62 +330,69 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <h1 class="text-center">Form Pendaftaran</h1>
-                </div>
-                <div class="col-sm-12">
-
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-
-    <section class="mb-5 pb-5" id="rate-section">
-        <div class="container">
-            <div class="row mb-5">
-                <div class="col-sm-12 text-center ">
-                    <h2>10 UMKM Terdekat </h2>
-                    <p><small>10 umkm dengan jarak terdekat dari lokasimu</small></p>
+                    <h1 class="text-center">Form UMKM Tana Toraja</h1>
                 </div>
             </div>
             <div class="row">
-                @php
-                    $lokasi_umkm = $lokasi_umkm->sortBy(function ($row) use ($lat, $long) {
-                        return calculateDistanceInKm($lat, $long, $row->long, $row->lat);
-                    });
-                @endphp
-                @foreach ($lokasi_umkm as $row)
-                    <div class="col-sm-4 mb-4">
-                        <div class="card border-0 shadow main-radius">
-                            <div class="card-body ">
-                                <img src="{{ asset('img/png/store.png') }}" alt="" width="100"
-                                    class="mb-4">
-                                <h5 class="card-title">{{ $row->umkm->nama }}</h5>
-                                <p class="card-text">{{ $row->umkm->alamat }}</p>
-                                <p>Jarak : {{ round(calculateDistanceInKm($lat, $long, $row->long, $row->lat), 2) }} Km
-                                </p>
-                                <div class="rate">
-                                    @php
-                                        // $rating = $row->umkm->rate; // Assuming $row->umkm->rate contains the rating value (e.g., 4)
-                                        $rating = $row->umkm->rating ? $row->umkm->rating->avg('rate') : 0;
-                                    @endphp
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
 
-                                    @for ($i = 1; $i <= 5; $i++)
-                                        <a href="{{ URL::to('rate/' . $i . '/' . $row->umkm->id) }}"
-                                            class="fa fa-star {{ $i <= $rating ? 'text-warning' : 'text-dark' }}"></a>
-                                    @endfor
-
-                                    <span>( {{ $row->umkm->rating ? $row->umkm->rating->count() : 0 }} )</span>
-
+                            <form action="{{ URL::to('/admin/umkm') }}" method="post" enctype="multipart/form-data">
+                                @csrf
+                                <div class="form-group">
+                                    <label for="nama">Nama</label>
+                                    <input required type="text" class="form-control" name="nama" id="nama">
                                 </div>
-                            </div>
+                                <div class="form-group">
+                                    <label for="tgl_lahir">tgl_lahir</label>
+                                    <input required type="date" class="form-control" name="tgl_lahir" id="tgl_lahir">
+                                </div>
+                                <div class="form-group">
+                                    <label for="jk">jk</label>
+                                    <input required type="text" class="form-control" name="jk" id="jk">
+                                </div>
+                                <div class="form-group">
+                                    <label for="provinsi1">provinsi1</label>
+                                    <input required type="text" class="form-control" name="provinsi1" id="provinsi1">
+                                </div>
+                                <div class="form-group">
+                                    <label for="kab1">kab1</label>
+                                    <input required type="text" class="form-control" name="kab1" id="kab1">
+                                </div>
+                                <div class="form-group">
+                                    <label for="bidang_usaha">bidang_usaha</label>
+                                    <input required type="text" class="form-control" name="bidang_usaha"
+                                        id="bidang_usaha">
+                                </div>
+                                <div class="form-group">
+                                    <label for="nib">nib</label>
+                                    <input required type="text" class="form-control" name="nib"
+                                        id="nib">
+                                </div>
+                                <div class="form-group">
+                                    <label for="status_pekerjaan">status_pekerjaan</label>
+                                    <input required type="text" class="form-control" name="status_pekerjaan"
+                                        id="status_pekerjaan">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="gambar">Gambar</label>
+                                    <input type="file" class="form-control" name="gambar" id="gambar">
+                                </div>
+                                <button type="submit" class="btn bg-main text-white mt-2"
+                                    id="modalBtn">Simpan</button>
+
+                            </form>
                         </div>
                     </div>
-                @endforeach
+                </div>
             </div>
         </div>
     </section>
+
+
+
 
     <footer class="mt-5 pt-5 pb-5 secondary-bg text-white">
         <div class="container">
@@ -394,6 +401,7 @@
                     <h5>Copyright &copy; GIS UMKM</h5>
                 </div>
             </div>
+
         </div>
     </footer>
 
@@ -402,27 +410,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <script>
-        let lat = {{ $lat }};
-        let long = {{ $long }};
-        console.log(lat);
-        if ("geolocation" in navigator) {
-            navigator.geolocation.getCurrentPosition(function(position) {
-                var latitude = position.coords.latitude;
-                var longitude = position.coords.longitude;
-
-                console.log("Latitude: " + latitude);
-                console.log("Longitude: " + longitude);
-
-                if (lat == 0) {
-                    document.location.href = "/?lat=" + latitude + "&long=" + longitude;
-                }
-                // You can use the latitude and longitude in your code here.
-            });
-        } else {
-            console.log("Geolocation is not available in this browser.");
-        }
-    </script>
+    <script></script>
 </body>
 
 </html>

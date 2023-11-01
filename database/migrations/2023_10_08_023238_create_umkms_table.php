@@ -34,6 +34,7 @@ class CreateUmkmsTable extends Migration
             $table->string('status');
             $table->string('telp');
             $table->string('gambar');
+            $table->integer('rate');
             $table->timestamps();
         });
     }

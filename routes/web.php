@@ -30,6 +30,8 @@ Route::post('/postlogin', [LoginController::class, 'postLogin']);
 Route::get('/logout', [LoginController::class, 'logout']);
 Route::get('/login', [LoginController::class, 'login']);
 Route::get('/', [Home::class, 'beranda']);
+Route::get('/daftar', [Home::class, 'daftar']);
+Route::get('/rate/{rate}/{id}', [Home::class, 'rate']);
 
 
 Route::get('/testing', [Home::class, 'testing']);
@@ -71,6 +73,7 @@ Route::group(['middleware' => ['auth', 'ceklevel:Administrator']], function () {
         Route::get('/umkm/datatable', [UmkmController::class, 'datatable']);
         Route::get('/umkm/{id}/edit', [UmkmController::class, 'edit']);
         Route::get('/umkm/{id}/delete', [UmkmController::class, 'delete']);
+        Route::get('/umkm/{id}/konfirmasi', [UmkmController::class, 'konfirmasi']);
         Route::post('/umkm/{id}/update', [UmkmController::class, 'update']);
         Route::post('/umkm', [UmkmController::class, 'store']);
         Route::get('/umkm/create', [UmkmController::class, 'create']);

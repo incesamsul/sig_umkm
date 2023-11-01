@@ -40,6 +40,7 @@ class UmkmController extends Controller
 
             ->addColumn('aksi', function ($row) {
                 return '<a href="/admin/umkm/' . $row->id . '/edit" class="btn btn-primary btn-sm"><i class="fas fa-edit"></i></a>
+            <a href="/admin/umkm/' . $row->id . '/konfirmasi" class="btn ' . ($row->verifikasi == 1 ? 'btn-success' : 'btn-info') . ' btn-sm">Konfirmasi</a>
             <a href="/admin/umkm/' . $row->id . '/delete" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>';
             })
             ->rawColumns(['aksi']) // Allow HTML tags in columns
@@ -55,13 +56,38 @@ class UmkmController extends Controller
     public function store(Request $request)
     {
 
-        Umkm::create($request->all());
-        return redirect('admin/umkm')->with('message', 'Data Berhasil Ditambahkan');
+        Umkm::create([
+            'nama' => $request->nama,
+            'tgl_lahir' => $request->tgl_lahir,
+            'jk' => $request->jk,
+            'provinsi1' => $request->provinsi1,
+            'kab1' => $request->kab1,
+            'kec1' => $request->kec1,
+            'desa1' => $request->desa1,
+            'provinsi2' => $request->provinsi2,
+            'kab2' => $request->kab2,
+            'kec2' => $request->kec2,
+            'desa2' => $request->desa2,
+            'bidang_usaha' => $request->bidang_usaha,
+            'nib' => $request->nib,
+            'status' => $request->status_pekerjaan,
+            'telp' => $request->telp,
+            'gambar' => $request->gambar,
+
+        ]);
+        return redirect()->back()->with('message', 'Data Berhasil Ditambahkan');
     }
 
     public function delete($id)
     {
         Umkm::find($id)->delete();
         return redirect('admin/umkm')->with('message', 'Data Berhasil Dihapus');
+    }
+    public function konfirmasi($id)
+    {
+        Umkm::find($id)->update([
+            'verifikasi' => 1,
+        ]);
+        return redirect('admin/umkm')->with('message', 'Data Berhasil dikonfirmasi');
     }
 }

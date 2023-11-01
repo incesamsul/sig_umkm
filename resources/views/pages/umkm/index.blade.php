@@ -22,16 +22,16 @@
                                     <th>jk</th>
                                     <th>provinsi ktp</th>
                                     <th>kab ktp</th>
-                                    <th>desa ktp</th>
+                                    {{-- <th>desa ktp</th>
                                     <th>provinsi usaha</th>
                                     <th>kab usaha</th>
                                     <th>kec usaha</th>
-                                    <th>desa usaha</th>
+                                    <th>desa usaha</th> --}}
                                     <th>bidang</th>
                                     <th>nib</th>
                                     <th>status</th>
-                                    <th>telp</th>
-                                    <th>gambar</th>
+                                    {{-- <th>telp</th> --}}
+                                    {{-- <th>gambar</th> --}}
                                     <th></th>
                                 </tr>
                             </thead>
@@ -130,24 +130,24 @@
                 {
                     data: 'kab1',
                 },
-                {
-                    data: 'kec1',
-                },
-                {
-                    data: 'desa2',
-                },
-                {
-                    data: 'provinsi2',
-                },
-                {
-                    data: 'kab2',
-                },
-                {
-                    data: 'kec2',
-                },
-                {
-                    data: 'desa2',
-                },
+                // {
+                //     data: 'kec1',
+                // },
+                // {
+                //     data: 'desa2',
+                // },
+                // {
+                //     data: 'provinsi2',
+                // },
+                // {
+                //     data: 'kab2',
+                // },
+                // {
+                //     data: 'kec2',
+                // },
+                // {
+                //     data: 'desa2',
+                // },
                 {
                     data: 'bidang_usaha',
                 },
@@ -157,9 +157,9 @@
                 {
                     data: 'status',
                 },
-                {
-                    data: 'telp',
-                },
+                // {
+                //     data: 'telp',
+                // },
                 {
                     data: 'aksi',
                 },
